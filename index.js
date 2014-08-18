@@ -244,10 +244,10 @@ function session(options){
           }
 
           debug('destroyed');
-          writeend();
+          return _end.call(res, chunk, encoding);
         });
 
-        return writetop();
+        //return writetop();
       }
 
       // no session to save
@@ -266,13 +266,15 @@ function session(options){
           }
 
           debug('saved');
-          writeend();
+          return _end.call(res, chunk, encoding);
         });
 
-        return writetop();
+        //return writetop();
+      } else {
+        return _end.call(res, chunk, encoding);
       }
 
-      return _end.call(res, chunk, encoding);
+      //return _end.call(res, chunk, encoding);
     };
 
     // generate the session
